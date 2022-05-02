@@ -1,0 +1,59 @@
+{
+  "name": "@nkduy/babel-plugin-dynamic-import-node",
+  "version": "1.0.2",
+  "description": "Babel plugin to transpile import() to a deferred require(), for node",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf lib",
+    "test": "npm run lint && npm run tests-only",
+    "tests-only": "mocha",
+    "lint": "eslint .",
+    "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
+    "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
+    "version:major": "npm --no-git-tag-version version major",
+    "version:minor": "npm --no-git-tag-version version minor",
+    "version:patch": "npm --no-git-tag-version version patch",
+    "postversion": "git commit package.json CHANGELOG.md -m \"v$npm_package_version\" && npm run tag && git push && git push --tags",
+    "tag": "git tag v$npm_package_version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanhduy1407/babel-plugin-dynamic-import-node.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "dynamic",
+    "import",
+    "node"
+  ],
+  "author": "NKDuy <kn145660@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khanhduy1407/babel-plugin-dynamic-import-node/issues"
+  },
+  "homepage": "https://github.com/khanhduy1407/babel-plugin-dynamic-import-node#readme",
+  "devDependencies": {
+    "@nkduy/babel-cli": "^6.22.0",
+    "@nkduy/babel-core": "^6.24.1",
+    "@nkduy/babel-plugin-transform-es2015-template-literals": "^6.22.0",
+    "@nkduy/babel-register": "^6.24.1",
+    "airbnb-js-shims": "^1.1.1",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-airbnb": "^2.2.3",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "in-publish": "^2.0.0",
+    "mocha": "^3.3.0",
+    "rimraf": "^2.6.1",
+    "safe-publish-latest": "^1.1.1"
+  },
+  "dependencies": {
+    "@nkduy/babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "@nkduy/babel-template": "^6.24.1",
+    "@nkduy/babel-types": "^6.24.4"
+  }
+}
